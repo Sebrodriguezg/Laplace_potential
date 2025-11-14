@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pruebas y Ejemplos de Uso &mdash; Documentación – Campo Estático MDF</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="canonical" href="https://sebrodriguezg.github.io/Laplace_potential/tests.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=9c9b61ad"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=f85f4cfb"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Interfaz Gráfica (Streamlit)" href="GUI.html" />
+    <link rel="prev" title="Codigo Fuente" href="api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Campo Estatico MDF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api.html">Codigo Fuente</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D.aplicar_condiciones_contorno"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.aplicar_condiciones_contorno()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D.calcular_campo_e"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.calcular_campo_e()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D.resolver_gauss_seidel"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.resolver_gauss_seidel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D.resolver_jacobi"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.resolver_jacobi()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pruebas y Ejemplos de Uso</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#caso-1-potencial-nulo-en-todas-las-fronteras">Caso 1: potencial nulo en todas las fronteras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caso-2-frontera-izquierda-a-10-v-y-el-resto-a-0-v">Caso 2: frontera izquierda a 10 V y el resto a 0 V</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caso-3-potencial-lineal-impuesto-campo-constante">Caso 3: potencial lineal impuesto (campo constante)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caso-4-caso-simetrico-dos-fronteras-a-10-v">Caso 4: caso simétrico (dos fronteras a 10 V)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ejecucion-completa-del-flujo">Ejecución completa del flujo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="GUI.html">Interfaz Gráfica (Streamlit)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#descripcion-general">Descripción General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#pantalla-de-inicio">Pantalla de Inicio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#resultados-de-la-simulacion">Resultados de la Simulación</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="GUI.html#mapa-de-potencial-y-campo-electrico">Mapa de Potencial y Campo Eléctrico</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GUI.html#evolucion-del-error">Evolución del Error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#ejecucion-desde-la-terminal">Ejecución desde la Terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#integracion-con-el-solucionador">Integración con el Solucionador</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#ejecutar-la-aplicacion-desde-la-documentacion">Ejecutar la Aplicación desde la Documentación</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="GUI.html#ejecucion-local-recomendada">Ejecución Local (recomendada)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="instalacion.html">Instalación</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="instalacion.html#requisitos-previos">Requisitos previos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacion.html#dependencias-del-paquete">Dependencias del paquete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacion.html#instalacion-desde-pypi">Instalación desde PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacion.html#instalacion-desde-github">Instalación desde GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacion.html#instalacion-desde-el-codigo-fuente">Instalación desde el código fuente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacion.html#verificacion-de-instalacion">Verificación de instalación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacion.html#estructura-del-proyecto">Estructura del proyecto</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Campo Estatico MDF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Pruebas y Ejemplos de Uso</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tests.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pruebas-y-ejemplos-de-uso">
+<h1>Pruebas y Ejemplos de Uso<a class="headerlink" href="#pruebas-y-ejemplos-de-uso" title="Link to this heading"></a></h1>
+<p>Esta sección presenta una serie de ejemplos prácticos que muestran cómo utilizar
+el solucionador numérico <code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D</span></code> y cuáles son las salidas típicas
+generadas por el programa.
+Los ejemplos incluyen:</p>
+<ul class="simple">
+<li><p>Configuración de casos simples.</p></li>
+<li><p>Ejecución del método de Gauss–Seidel.</p></li>
+<li><p>Obtención del mapa de potencial.</p></li>
+<li><p>Cálculo del campo eléctrico.</p></li>
+<li><p>Visualizaciones generadas.</p></li>
+</ul>
+<nav class="contents local" id="contenido">
+<ul class="simple">
+<li><p><a class="reference internal" href="#caso-1-potencial-nulo-en-todas-las-fronteras" id="id1">Caso 1: potencial nulo en todas las fronteras</a></p></li>
+<li><p><a class="reference internal" href="#caso-2-frontera-izquierda-a-10-v-y-el-resto-a-0-v" id="id2">Caso 2: frontera izquierda a 10 V y el resto a 0 V</a></p></li>
+<li><p><a class="reference internal" href="#caso-3-potencial-lineal-impuesto-campo-constante" id="id3">Caso 3: potencial lineal impuesto (campo constante)</a></p></li>
+<li><p><a class="reference internal" href="#caso-4-caso-simetrico-dos-fronteras-a-10-v" id="id4">Caso 4: caso simétrico (dos fronteras a 10 V)</a></p></li>
+<li><p><a class="reference internal" href="#ejecucion-completa-del-flujo" id="id5">Ejecución completa del flujo</a></p></li>
+</ul>
+</nav>
+<section id="caso-1-potencial-nulo-en-todas-las-fronteras">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Caso 1: potencial nulo en todas las fronteras</a><a class="headerlink" href="#caso-1-potencial-nulo-en-todas-las-fronteras" title="Link to this heading"></a></h2>
+<p>El caso más simple consiste en fijar todas las fronteras a 0 V:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">campo_estatico_mdf.solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">LaplaceSolver2D</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">solver</span> <span class="o">=</span> <span class="n">LaplaceSolver2D</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">V_izq</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">V_der</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">V_sup</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">V_inf</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">aplicar_condiciones_contorno</span><span class="p">()</span>
+<span class="n">V</span><span class="p">,</span> <span class="n">iteraciones</span><span class="p">,</span> <span class="n">historial_error</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">resolver_gauss_seidel</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>La solución física es trivial: el potencial es cero en todo el dominio.</p>
+<p>Salida esperada:</p>
+<a class="reference internal image-reference" href="_images/caso_trivial.png"><img alt="Solución trivial con potencial cero" class="align-center" src="_images/caso_trivial.png" style="width: 90%;" />
+</a>
+</section>
+<section id="caso-2-frontera-izquierda-a-10-v-y-el-resto-a-0-v">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Caso 2: frontera izquierda a 10 V y el resto a 0 V</a><a class="headerlink" href="#caso-2-frontera-izquierda-a-10-v-y-el-resto-a-0-v" title="Link to this heading"></a></h2>
+<p>Este ejemplo muestra un caso clásico de conducción con una sola frontera excitada.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">LaplaceSolver2D</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">V_izq</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">V_der</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">V_sup</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">V_inf</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">aplicar_condiciones_contorno</span><span class="p">()</span>
+<span class="n">V</span><span class="p">,</span> <span class="n">iteraciones</span><span class="p">,</span> <span class="n">historial_error</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">resolver_gauss_seidel</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>El resultado es un gradiente suave desde 10 V hasta 0 V.</p>
+<p><strong>Mapa de potencial:</strong></p>
+<a class="reference internal image-reference" href="_images/caso_lateral_10V.png"><img alt="Mapa de potencial con una frontera a 10 V" class="align-center" src="_images/caso_lateral_10V.png" style="width: 90%;" />
+</a>
+<p><strong>Campo eléctrico:</strong></p>
+<a class="reference internal image-reference" href="_images/campo_lateral_10V.png"><img alt="Campo eléctrico generado por el gradiente de potencial" class="align-center" src="_images/campo_lateral_10V.png" style="width: 90%;" />
+</a>
+</section>
+<section id="caso-3-potencial-lineal-impuesto-campo-constante">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Caso 3: potencial lineal impuesto (campo constante)</a><a class="headerlink" href="#caso-3-potencial-lineal-impuesto-campo-constante" title="Link to this heading"></a></h2>
+<p>En este ejemplo el usuario define manualmente un potencial lineal sin necesidad
+de realizar iteraciones:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">V_izq</span><span class="p">,</span> <span class="n">V_der</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span>
+
+<span class="n">solver</span> <span class="o">=</span> <span class="n">LaplaceSolver2D</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">V_izq</span><span class="o">=</span><span class="n">V_izq</span><span class="p">,</span> <span class="n">V_der</span><span class="o">=</span><span class="n">V_der</span><span class="p">,</span> <span class="n">V_sup</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">V_inf</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">lin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">V_izq</span><span class="p">,</span> <span class="n">V_der</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">lin</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">Ex</span><span class="p">,</span> <span class="n">Ey</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">calcular_campo_e</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Esto genera un campo eléctrico constante en toda la malla.</p>
+<p><strong>Visualización del campo eléctrico:</strong></p>
+<a class="reference internal image-reference" href="_images/campo_lineal.png"><img alt="Campo eléctrico constante" class="align-center" src="_images/campo_lineal.png" style="width: 90%;" />
+</a>
+</section>
+<section id="caso-4-caso-simetrico-dos-fronteras-a-10-v">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Caso 4: caso simétrico (dos fronteras a 10 V)</a><a class="headerlink" href="#caso-4-caso-simetrico-dos-fronteras-a-10-v" title="Link to this heading"></a></h2>
+<p>Un caso interesante es cuando las fronteras izquierda y derecha se fijan a 10 V,
+mientras que las superior e inferior permanecen a 0 V.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">LaplaceSolver2D</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">V_izq</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">V_der</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">V_sup</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">V_inf</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">aplicar_condiciones_contorno</span><span class="p">()</span>
+<span class="n">V</span><span class="p">,</span> <span class="n">iteraciones</span><span class="p">,</span> <span class="n">historial_error</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">resolver_gauss_seidel</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>El resultado presenta simetría horizontal y un potencial distribuido en forma de
+curvatura suave.</p>
+<p><strong>Mapa de potencial:</strong></p>
+<a class="reference internal image-reference" href="_images/caso_simetrico.png"><img alt="Distribución simétrica del potencial" class="align-center" src="_images/caso_simetrico.png" style="width: 90%;" />
+</a>
+</section>
+<section id="ejecucion-completa-del-flujo">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Ejecución completa del flujo</a><a class="headerlink" href="#ejecucion-completa-del-flujo" title="Link to this heading"></a></h2>
+<p>Este fragmento muestra un uso típico en un script.
+La tolerancia numérica se define únicamente al crear el solver mediante su
+parámetro <code class="docutils literal notranslate"><span class="pre">tolerancia</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">LaplaceSolver2D</span><span class="p">(</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">V_izq</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">V_der</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">V_sup</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">V_inf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">tolerancia</span><span class="o">=</span><span class="mf">1e-5</span>
+<span class="p">)</span>
+
+<span class="n">solver</span><span class="o">.</span><span class="n">aplicar_condiciones_contorno</span><span class="p">()</span>
+
+<span class="n">V</span><span class="p">,</span> <span class="n">iteraciones</span><span class="p">,</span> <span class="n">historial_error</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">resolver_gauss_seidel</span><span class="p">()</span>
+<span class="n">Ex</span><span class="p">,</span> <span class="n">Ey</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">calcular_campo_e</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Convergió en </span><span class="si">{</span><span class="n">iteraciones</span><span class="si">}</span><span class="s2"> iteraciones.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Ejemplo de salida visual:</strong></p>
+<a class="reference internal image-reference" href="_images/flujo_completo.png"><img alt="Resultados completos de potencial y campo eléctrico" class="align-center" src="_images/flujo_completo.png" style="width: 95%;" />
+</a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="api.html" class="btn btn-neutral float-left" title="Codigo Fuente" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="GUI.html" class="btn btn-neutral float-right" title="Interfaz Gráfica (Streamlit)" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, Rodriguez-Huertas-Avila.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
