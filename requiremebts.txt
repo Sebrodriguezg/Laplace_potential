@@ -2,4 +2,4 @@ numpy
 scipy
 matplotlib
 pytest
-campo-estatico-mdf-DS @ git+https://github.com/Sebrodriguezg/Laplace_potential.git
+
