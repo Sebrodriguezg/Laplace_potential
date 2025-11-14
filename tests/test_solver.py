@@ -50,3 +50,19 @@ def test_campo_electrico_constante():
 
     # Verificamos que Ex es aproximadamente constante
     assert np.allclose(Ex, valor_esperado_ex, atol=1e-9)
+
+def test_convergencia_dos_lados():
+    """
+    Prueba la convergencia con dos lados a 10V y dos a 0V.
+    La solución debe ser simétrica y no trivial.
+    """
+    solver = LaplaceSolver2D(N=10, V_izq=10, V_der=10, V_sup=0, V_inf=0)
+    solver.aplicar_condiciones_contorno()
+    V, iteraciones = solver.resolver_gauss_seidel()
+
+    assert iteraciones > 0
+    assert not np.allclose(V[1:-1, 1:-1], 0)
+    assert np.isclose(np.max(V), 10)
+    assert np.isclose(np.min(V), 0)
+    # Verifica la simetría a lo largo del eje y (horizontal)
+    assert np.allclose(V, V[::-1, :])

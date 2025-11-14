@@ -5,8 +5,8 @@ import sys
 sys.path.insert(0, os.path.abspath('..'))
 
 project = 'Campo Estatico MDF'
-copyright = '2024, Jules'
-author = 'Jules'
+copyright = '2025, Rodriguez-Huertas-Avila'
+author = 'Sebastian Rodriguez, Camilo Huertas, Julian Avila'
 release = '0.1'
 
 extensions = [
