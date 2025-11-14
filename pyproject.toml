@@ -6,7 +6,9 @@ build-backend = "setuptools.build_meta"
 name = "campo_estatico_mdf"
 version = "0.1.0"
 authors = [
-    { name="Jules", email="jules@example.com" },
+    { name="Camilo Huertas", email="cahuertasa@udistrital.edu.co" },
+    { name="Sebastian Rodriguez", email="sebrodriguezg@udistrital.edu.co" },
+    { name="Julian Avila", email="jlavilam@udistrital.edu.co" }
 ]
 description = "Un paquete para resolver el campo electrostático 2D con el Método de Diferencias Finitas."
 readme = "README.md"
