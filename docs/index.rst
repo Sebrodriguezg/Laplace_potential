@@ -14,6 +14,7 @@ Bienvenido a la documentación de Campo Estático MDF
    api
    tests
    GUI
+   instalacion
 
 Introducción Teórica
 ====================
