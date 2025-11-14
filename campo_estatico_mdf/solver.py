@@ -66,6 +66,45 @@ class LaplaceSolver2D:
 
         return self.V, self.iteraciones, self.historial_error
 
+
+    def resolver_jacobi(self):
+        """
+        Resuelve la ecuación de Laplace usando el método iterativo de Jacobi.
+        """
+        V_anterior = self.V.copy()
+        V_nueva = self.V.copy()
+        error = self.tolerancia + 1
+
+        self.historial_error = []
+        self.iteraciones = 0
+
+        max_iter = 10000 # Límite de seguridad
+
+        while error > self.tolerancia:
+            
+            # Jacobi: calcula todos los puntos nuevos basado SOLO en V_anterior
+            for i in range(1, self.N - 1):
+                for j in range(1, self.N - 1):
+                    V_nueva[i, j] = 0.25 * (V_anterior[i+1, j] + V_anterior[i-1, j] + \
+                                            V_anterior[i, j+1] + V_anterior[i, j-1])
+
+            # Calcula el error basado en la diferencia entre la nueva y la anterior
+            error = np.max(np.abs(V_nueva - V_anterior))
+            self.historial_error.append(error)
+            
+            # Actualiza la matriz anterior para el próximo ciclo
+            V_anterior = V_nueva.copy()
+            self.iteraciones += 1
+            
+            if self.iteraciones > max_iter:
+                print("Advertencia: Se alcanzó el número máximo de iteraciones (Jacobi).")
+                break
+        
+        self.V = V_anterior # Asigna la solución final
+        return self.V, self.iteraciones, self.historial_error
+
+
+
     def calcular_campo_e(self):
         """
         Calcula el campo eléctrico E a partir del potencial.
