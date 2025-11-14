@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bienvenido a la documentación de Campo Estático MDF &mdash; Documentación – Campo Estático MDF</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="canonical" href="https://sebrodriguezg.github.io/Laplace_potential/index.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=9c9b61ad"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=f85f4cfb"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Codigo Fuente" href="api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Campo Estatico MDF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Codigo Fuente</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D.aplicar_condiciones_contorno"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.aplicar_condiciones_contorno()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D.calcular_campo_e"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.calcular_campo_e()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D.resolver_gauss_seidel"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.resolver_gauss_seidel()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Pruebas y Ejemplos de Uso</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#caso-1-potencial-nulo-en-todas-las-fronteras">Caso 1: potencial nulo en todas las fronteras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#caso-2-frontera-izquierda-a-10-v-y-el-resto-a-0-v">Caso 2: frontera izquierda a 10 V y el resto a 0 V</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#caso-3-potencial-lineal-impuesto-campo-constante">Caso 3: potencial lineal impuesto (campo constante)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#caso-4-caso-simetrico-dos-fronteras-a-10-v">Caso 4: caso simétrico (dos fronteras a 10 V)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#ejecucion-completa-del-flujo">Ejecución completa del flujo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="GUI.html">Interfaz Gráfica (Streamlit)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#descripcion-general">Descripción General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#pantalla-de-inicio">Pantalla de Inicio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#resultados-de-la-simulacion">Resultados de la Simulación</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="GUI.html#mapa-de-potencial-y-campo-electrico">Mapa de Potencial y Campo Eléctrico</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GUI.html#evolucion-del-error">Evolución del Error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#ejecucion-desde-la-terminal">Ejecución desde la Terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#integracion-con-el-solucionador">Integración con el Solucionador</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#ejecutar-la-aplicacion-desde-la-documentacion">Ejecutar la Aplicación desde la Documentación</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="GUI.html#ejecucion-local-recomendada">Ejecución Local (recomendada)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Campo Estatico MDF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Bienvenido a la documentación de Campo Estático MDF</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bienvenido-a-la-documentacion-de-campo-estatico-mdf">
+<h1>Bienvenido a la documentación de Campo Estático MDF<a class="headerlink" href="#bienvenido-a-la-documentacion-de-campo-estatico-mdf" title="Link to this heading"></a></h1>
+<a class="reference internal image-reference" href="_images/INDEX.png"><img alt="Solver" class="align-center" src="_images/INDEX.png" style="width: 90%;" />
+</a>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Codigo Fuente</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Pruebas y Ejemplos de Uso</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#caso-1-potencial-nulo-en-todas-las-fronteras">Caso 1: potencial nulo en todas las fronteras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#caso-2-frontera-izquierda-a-10-v-y-el-resto-a-0-v">Caso 2: frontera izquierda a 10 V y el resto a 0 V</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#caso-3-potencial-lineal-impuesto-campo-constante">Caso 3: potencial lineal impuesto (campo constante)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#caso-4-caso-simetrico-dos-fronteras-a-10-v">Caso 4: caso simétrico (dos fronteras a 10 V)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#ejecucion-completa-del-flujo">Ejecución completa del flujo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="GUI.html">Interfaz Gráfica (Streamlit)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#descripcion-general">Descripción General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#pantalla-de-inicio">Pantalla de Inicio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#resultados-de-la-simulacion">Resultados de la Simulación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#ejecucion-desde-la-terminal">Ejecución desde la Terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#integracion-con-el-solucionador">Integración con el Solucionador</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html#ejecutar-la-aplicacion-desde-la-documentacion">Ejecutar la Aplicación desde la Documentación</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="introduccion-teorica">
+<h1>Introducción Teórica<a class="headerlink" href="#introduccion-teorica" title="Link to this heading"></a></h1>
+<section id="ecuacion-de-laplace">
+<h2>Ecuación de Laplace<a class="headerlink" href="#ecuacion-de-laplace" title="Link to this heading"></a></h2>
+<p>La distribución del potencial eléctrico <span class="math notranslate nohighlight">\(V\)</span> en una región sin cargas se describe por:</p>
+<div class="math notranslate nohighlight">
+\[\nabla^2 V = \frac{\partial^2 V}{\partial x^2} + \frac{\partial^2 V}{\partial y^2} = 0\]</div>
+</section>
+<section id="metodo-de-diferencias-finitas-mdf">
+<h2>Método de Diferencias Finitas (MDF)<a class="headerlink" href="#metodo-de-diferencias-finitas-mdf" title="Link to this heading"></a></h2>
+<p>Para resolver esta ecuación numéricamente, discretizamos el dominio en una malla.</p>
+<p>La segunda derivada puede aproximarse como:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial^2 V}{\partial x^2} \approx \frac{V_{i+1,j} - 2V_{i,j} + V_{i-1,j}}{h^2}\]</div>
+<p>Aplicando esta aproximación para ambas derivadas, obtenemos:</p>
+<div class="math notranslate nohighlight">
+\[V_{i,j} = \frac{1}{4}\left( V_{i+1,j} + V_{i-1,j} + V_{i,j+1} + V_{i,j-1} \right)\]</div>
+</section>
+<section id="algoritmo-de-gauss-seidel">
+<h2>Algoritmo de Gauss-Seidel<a class="headerlink" href="#algoritmo-de-gauss-seidel" title="Link to this heading"></a></h2>
+<p>Este método iterativo actualiza el valor del potencial en cada nodo usando los valores
+más recientes disponibles hasta alcanzar una tolerancia deseada.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="api.html" class="btn btn-neutral float-right" title="Codigo Fuente" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, Rodriguez-Huertas-Avila.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interfaz Gráfica (Streamlit) &mdash; Documentación – Campo Estático MDF</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="canonical" href="https://sebrodriguezg.github.io/Laplace_potential/GUI.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=9c9b61ad"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=f85f4cfb"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="prev" title="Pruebas y Ejemplos de Uso" href="tests.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Campo Estatico MDF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api.html">Codigo Fuente</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D.aplicar_condiciones_contorno"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.aplicar_condiciones_contorno()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D.calcular_campo_e"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.calcular_campo_e()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#campo_estatico_mdf.solver.LaplaceSolver2D.resolver_gauss_seidel"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.resolver_gauss_seidel()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Pruebas y Ejemplos de Uso</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#caso-1-potencial-nulo-en-todas-las-fronteras">Caso 1: potencial nulo en todas las fronteras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#caso-2-frontera-izquierda-a-10-v-y-el-resto-a-0-v">Caso 2: frontera izquierda a 10 V y el resto a 0 V</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#caso-3-potencial-lineal-impuesto-campo-constante">Caso 3: potencial lineal impuesto (campo constante)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#caso-4-caso-simetrico-dos-fronteras-a-10-v">Caso 4: caso simétrico (dos fronteras a 10 V)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#ejecucion-completa-del-flujo">Ejecución completa del flujo</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Interfaz Gráfica (Streamlit)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#descripcion-general">Descripción General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pantalla-de-inicio">Pantalla de Inicio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resultados-de-la-simulacion">Resultados de la Simulación</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mapa-de-potencial-y-campo-electrico">Mapa de Potencial y Campo Eléctrico</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#evolucion-del-error">Evolución del Error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ejecucion-desde-la-terminal">Ejecución desde la Terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integracion-con-el-solucionador">Integración con el Solucionador</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ejecutar-la-aplicacion-desde-la-documentacion">Ejecutar la Aplicación desde la Documentación</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ejecucion-local-recomendada">Ejecución Local (recomendada)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Campo Estatico MDF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Interfaz Gráfica (Streamlit)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/GUI.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="interfaz-grafica-streamlit">
+<h1>Interfaz Gráfica (Streamlit)<a class="headerlink" href="#interfaz-grafica-streamlit" title="Link to this heading"></a></h1>
+<p>Este módulo proporciona una interfaz gráfica desarrollada con
+<strong>Streamlit</strong> para interactuar con el solucionador numérico de la
+ecuación de Laplace. Permite modificar parámetros, visualizar los
+resultados y ejecutar simulaciones sin necesidad de escribir código.</p>
+<nav class="contents local" id="contenido">
+<ul class="simple">
+<li><p><a class="reference internal" href="#descripcion-general" id="id1">Descripción General</a></p></li>
+<li><p><a class="reference internal" href="#pantalla-de-inicio" id="id2">Pantalla de Inicio</a></p></li>
+<li><p><a class="reference internal" href="#resultados-de-la-simulacion" id="id3">Resultados de la Simulación</a></p>
+<ul>
+<li><p><a class="reference internal" href="#mapa-de-potencial-y-campo-electrico" id="id4">Mapa de Potencial y Campo Eléctrico</a></p></li>
+<li><p><a class="reference internal" href="#evolucion-del-error" id="id5">Evolución del Error</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#ejecucion-desde-la-terminal" id="id6">Ejecución desde la Terminal</a></p></li>
+<li><p><a class="reference internal" href="#integracion-con-el-solucionador" id="id7">Integración con el Solucionador</a></p></li>
+<li><p><a class="reference internal" href="#ejecutar-la-aplicacion-desde-la-documentacion" id="id8">Ejecutar la Aplicación desde la Documentación</a></p>
+<ul>
+<li><p><a class="reference internal" href="#ejecucion-local-recomendada" id="id9">Ejecución Local (recomendada)</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="descripcion-general">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Descripción General</a><a class="headerlink" href="#descripcion-general" title="Link to this heading"></a></h2>
+<p>La interfaz ofrece:</p>
+<ul class="simple">
+<li><p>Configuración del tamaño de la malla.</p></li>
+<li><p>Selección de tolerancia de convergencia.</p></li>
+<li><p>Ajuste de voltajes en cada frontera.</p></li>
+<li><p>Ejecución del método de Gauss–Seidel.</p></li>
+<li><p>Visualización del mapa de potencial.</p></li>
+<li><p>Gráfica del campo eléctrico.</p></li>
+<li><p>Evolución del error de convergencia.</p></li>
+</ul>
+</section>
+<section id="pantalla-de-inicio">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Pantalla de Inicio</a><a class="headerlink" href="#pantalla-de-inicio" title="Link to this heading"></a></h2>
+<p>A continuación se muestra la pantalla principal de la aplicación, donde
+el usuario ingresa los parámetros de la simulación.</p>
+<a class="reference internal image-reference" href="_images/inicio.png"><img alt="Pantalla de inicio del solucionador 2D" class="align-center" src="_images/inicio.png" style="width: 90%;" />
+</a>
+</section>
+<section id="resultados-de-la-simulacion">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Resultados de la Simulación</a><a class="headerlink" href="#resultados-de-la-simulacion" title="Link to this heading"></a></h2>
+<section id="mapa-de-potencial-y-campo-electrico">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Mapa de Potencial y Campo Eléctrico</a><a class="headerlink" href="#mapa-de-potencial-y-campo-electrico" title="Link to this heading"></a></h3>
+<p>Una vez ejecutado el método iterativo, se presentan dos visualizaciones:</p>
+<ol class="arabic simple">
+<li><p>El mapa de potencial eléctrico V(x,y).</p></li>
+<li><p>El campo eléctrico obtenido mediante gradiente numérico.</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/resultados_potencial.png"><img alt="Resultados: potencial y campo eléctrico" class="align-center" src="_images/resultados_potencial.png" style="width: 95%;" />
+</a>
+</section>
+<section id="evolucion-del-error">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Evolución del Error</a><a class="headerlink" href="#evolucion-del-error" title="Link to this heading"></a></h3>
+<p>También se grafica el error máximo por iteración, útil para analizar la
+convergencia del método.</p>
+<a class="reference internal image-reference" href="_images/resultados_error.png"><img alt="Error de convergencia por iteración" class="align-center" src="_images/resultados_error.png" style="width: 90%;" />
+</a>
+</section>
+</section>
+<section id="ejecucion-desde-la-terminal">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Ejecución desde la Terminal</a><a class="headerlink" href="#ejecucion-desde-la-terminal" title="Link to this heading"></a></h2>
+<p>La interfaz puede ejecutarse desde la raíz del proyecto:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>streamlit<span class="w"> </span>run<span class="w"> </span>app.py
+</pre></div>
+</div>
+<p>Esto inicia un servidor local accesible usualmente en:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8501</span>
+</pre></div>
+</div>
+</section>
+<section id="integracion-con-el-solucionador">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Integración con el Solucionador</a><a class="headerlink" href="#integracion-con-el-solucionador" title="Link to this heading"></a></h2>
+<p>La interfaz hace uso del módulo:</p>
+<p><code class="docutils literal notranslate"><span class="pre">campo_estatico_mdf.solver.LaplaceSolver2D</span></code></p>
+<p>El cual resuelve la ecuación de Laplace mediante Gauss–Seidel y calcula el
+campo eléctrico derivado del potencial.</p>
+<p><code class="docutils literal notranslate"><span class="pre">GUI.rst</span></code> está diseñado para complementar la documentación del API e
+ilustrar su uso práctico.</p>
+</section>
+<section id="ejecutar-la-aplicacion-desde-la-documentacion">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Ejecutar la Aplicación desde la Documentación</a><a class="headerlink" href="#ejecutar-la-aplicacion-desde-la-documentacion" title="Link to this heading"></a></h2>
+<p>La documentación puede consultarse en diferentes contextos (local o en línea).
+A continuación se explica cómo ejecutar la interfaz gráfica según el caso.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>GitHub Pages y otros hospedajes estáticos <strong>no permiten ejecutar Streamlit</strong>.
+Solo es posible iniciar la aplicación en un entorno local o en un servicio
+de despliegue interactivo como <em>Streamlit Community Cloud</em>.</p>
+</div>
+<section id="ejecucion-local-recomendada">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Ejecución Local (recomendada)</a><a class="headerlink" href="#ejecucion-local-recomendada" title="Link to this heading"></a></h3>
+<p>Si has clonado el repositorio e instalado las dependencias, puedes iniciar la
+interfaz directamente con:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>streamlit<span class="w"> </span>run<span class="w"> </span>app.py
+</pre></div>
+</div>
+<p>Una vez iniciada, puedes abrir el siguiente enlace en tu navegador:</p>
+<p><a class="reference external" href="http://localhost:8501">Abrir aplicación local</a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="tests.html" class="btn btn-neutral float-left" title="Pruebas y Ejemplos de Uso" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, Rodriguez-Huertas-Avila.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
