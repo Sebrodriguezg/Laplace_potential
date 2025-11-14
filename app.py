@@ -20,6 +20,11 @@ with col1:
     N = st.slider("Tamaño de la malla (N x N)", min_value=10, max_value=100, value=30, step=5)
     tolerancia = st.number_input("Tolerancia de convergencia (ε)", min_value=1e-7, max_value=1e-3, value=1e-5, format="%.7f")
 
+    metodo = st.selectbox(
+            "Método de Resolución",
+            ("Gauss-Seidel", "Jacobi")
+    )
+
 with col2:
     st.header("Condiciones de Contorno (Voltaje)")
     V_izq = st.number_input("Frontera Izquierda (V)", value=10.0)
@@ -34,10 +39,16 @@ if st.button("Resolver y Visualizar"):
     with st.spinner("Calculando... Esto puede tardar unos segundos."):
         solver = LaplaceSolver2D(N, V_izq, V_der, V_sup, V_inf, tolerancia)
         solver.aplicar_condiciones_contorno()
-        V, iteraciones, historial_error = solver.resolver_gauss_seidel()
+
+        if "Jacobi" in metodo:
+            V, iteraciones, historial_error = solver.resolver_jacobi()
+        else:
+            V, iteraciones, historial_error = solver.resolver_gauss_seidel()
+
         Ex, Ey = solver.calcular_campo_e()
 
-    st.success(f"¡Convergencia alcanzada en {iteraciones} iteraciones!")
+
+    st.success(f"¡Convergencia alcanzada en {iteraciones} iteraciones con metodo {metodo}!")
 
     # --- Visualización de resultados ---
     st.header("Resultados de la Simulación")
