@@ -26,4 +26,5 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = ["campo_estatico_mdf"]
+package-dir = {}     # ⬅️ ESTO DESACTIVA EL PAQUETE
+packages = []         # ⬅️ NO HAY PAQUETE A INSTALAR
