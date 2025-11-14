@@ -22,3 +22,7 @@ Este proyecto resuelve la ecuación de Laplace en 2D utilizando el Método de Di
 ├── app.py
 └── README.md
 ```
+## Autores
+- Sebastian Rodriguez
+- Camilo Huertas
+- Julian Avila
