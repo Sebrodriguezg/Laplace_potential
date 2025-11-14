@@ -34,7 +34,7 @@ if st.button("Resolver y Visualizar"):
     with st.spinner("Calculando... Esto puede tardar unos segundos."):
         solver = LaplaceSolver2D(N, V_izq, V_der, V_sup, V_inf, tolerancia)
         solver.aplicar_condiciones_contorno()
-        V, iteraciones = solver.resolver_gauss_seidel()
+        V, iteraciones, historial_error = solver.resolver_gauss_seidel()
         Ex, Ey = solver.calcular_campo_e()
 
     st.success(f"¡Convergencia alcanzada en {iteraciones} iteraciones!")
@@ -63,3 +63,14 @@ if st.button("Resolver y Visualizar"):
     ax2.set_aspect('equal', adjustable='box')
 
     st.pyplot(fig)
+
+    st.header("Evolución del Error de Convergencia")
+
+    fig_err, ax_err = plt.subplots(figsize=(10,4))
+    ax_err.semilogy(historial_error)
+    ax_err.set_xlabel('Iteración')
+    ax_err.set_ylabel('Error (escala log)')
+    ax_err.set_title('Error máximo por iteración')
+
+    st.pyplot(fig_err)
+

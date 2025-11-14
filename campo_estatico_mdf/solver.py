@@ -47,12 +47,16 @@ class LaplaceSolver2D:
         V_anterior = self.V.copy()
         error = self.tolerancia + 1
 
+        self.historial_error = []
+
         while error > self.tolerancia:
             for i in range(1, self.N - 1):
                 for j in range(1, self.N - 1):
                     self.V[i, j] = 0.25 * (self.V[i+1, j] + self.V[i-1, j] + self.V[i, j+1] + self.V[i, j-1])
 
             error = np.max(np.abs(self.V - V_anterior))
+            self.historial_error.append(error)
+
             V_anterior = self.V.copy()
             self.iteraciones += 1
 
@@ -60,11 +64,11 @@ class LaplaceSolver2D:
                 print("Advertencia: Se alcanzó el número máximo de iteraciones.")
                 break
 
-        return self.V, self.iteraciones
+        return self.V, self.iteraciones, self.historial_error
 
     def calcular_campo_e(self):
         """
-        Calcula el campo eléctrico E a partir del potencial V.
+        Calcula el campo eléctrico E a partir del potencial.
 
         Returns:
             tuple: Componentes Ex y Ey del campo eléctrico (numpy.ndarray).
