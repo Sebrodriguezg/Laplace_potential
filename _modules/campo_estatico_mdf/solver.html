@@ -48,6 +48,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../api.html#campo_estatico_mdf.solver.LaplaceSolver2D.aplicar_condiciones_contorno"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.aplicar_condiciones_contorno()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api.html#campo_estatico_mdf.solver.LaplaceSolver2D.calcular_campo_e"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.calcular_campo_e()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api.html#campo_estatico_mdf.solver.LaplaceSolver2D.resolver_gauss_seidel"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.resolver_gauss_seidel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api.html#campo_estatico_mdf.solver.LaplaceSolver2D.resolver_jacobi"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.resolver_jacobi()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -74,6 +75,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../../GUI.html#ejecucion-local-recomendada">Ejecución Local (recomendada)</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../instalacion.html">Instalación</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../instalacion.html#requisitos-previos">Requisitos previos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../instalacion.html#dependencias-del-paquete">Dependencias del paquete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../instalacion.html#instalacion-desde-pypi">Instalación desde PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../instalacion.html#instalacion-desde-github">Instalación desde GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../instalacion.html#instalacion-desde-el-codigo-fuente">Instalación desde el código fuente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../instalacion.html#verificacion-de-instalacion">Verificación de instalación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../instalacion.html#estructura-del-proyecto">Estructura del proyecto</a></li>
 </ul>
 </li>
 </ul>
@@ -177,6 +188,48 @@
                 <span class="k">break</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">iteraciones</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">historial_error</span></div>
+
+
+
+<div class="viewcode-block" id="LaplaceSolver2D.resolver_jacobi">
+<a class="viewcode-back" href="../../api.html#campo_estatico_mdf.solver.LaplaceSolver2D.resolver_jacobi">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">resolver_jacobi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resuelve la ecuación de Laplace usando el método iterativo de Jacobi.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">V_anterior</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">V_nueva</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerancia</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">historial_error</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iteraciones</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">10000</span> <span class="c1"># Límite de seguridad</span>
+
+        <span class="k">while</span> <span class="n">error</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerancia</span><span class="p">:</span>
+            
+            <span class="c1"># Jacobi: calcula todos los puntos nuevos basado SOLO en V_anterior</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="n">V_nueva</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="p">(</span><span class="n">V_anterior</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">V_anterior</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">+</span> \
+                                            <span class="n">V_anterior</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">V_anterior</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="c1"># Calcula el error basado en la diferencia entre la nueva y la anterior</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">V_nueva</span> <span class="o">-</span> <span class="n">V_anterior</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">historial_error</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+            
+            <span class="c1"># Actualiza la matriz anterior para el próximo ciclo</span>
+            <span class="n">V_anterior</span> <span class="o">=</span> <span class="n">V_nueva</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iteraciones</span> <span class="o">+=</span> <span class="mi">1</span>
+            
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">iteraciones</span> <span class="o">&gt;</span> <span class="n">max_iter</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Advertencia: Se alcanzó el número máximo de iteraciones (Jacobi).&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">=</span> <span class="n">V_anterior</span> <span class="c1"># Asigna la solución final</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">iteraciones</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">historial_error</span></div>
+
+
 
 
 <div class="viewcode-block" id="LaplaceSolver2D.calcular_campo_e">
